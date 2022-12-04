@@ -4,12 +4,12 @@ pipeline {
     buildDiscarder(logRotator(numTokeepStr: '5'))
   }
   environment {
-    DOCKERHUB_CREDENTIALS = credentials('simpsonumana-dockerhub')
+    DOCKERHUB_CREDENTIALS = credentials('dockerhub-token')
   }
   stages {
     stage('Build') {
       steps {
-        sh 'docker build -t esumana/dp-alpine:latest'
+        sh 'docker build -t esumana/dp-alpine:latest .'
       }
     }
     stage('Login') {
